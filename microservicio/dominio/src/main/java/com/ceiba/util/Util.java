@@ -12,7 +12,13 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
+
 public class Util {
+
+    private Util() {
+        throw new IllegalStateException("Utility class");
+    }
 
     /**
      * convierte una fecha date en una fecha string
@@ -30,7 +36,7 @@ public class Util {
           convert = formatDate.format(date);
         }catch(Exception e)
          {
-            System.out.println("Inconveniente al ejecutar el metodo convertDate: "+e.getMessage());
+             LOGGER.info("Inconveniente al ejecutar el metodo convertDate: "+e.getMessage());
          }
         return convert;
     }
@@ -51,7 +57,7 @@ public class Util {
             dtmDate = formatString.parse(strDate);
         }catch (Exception e)
         {
-            System.out.println("Inconveniente al convertir fecha texto a Date "+e.getMessage());
+            LOGGER.info("Inconveniente al convertir fecha texto a Date "+e.getMessage());
         }
         return dtmDate;
     }
@@ -68,8 +74,6 @@ public class Util {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         response = cal.get(Calendar.DAY_OF_MONTH);
-
-        System.out.println("----------> Dia:  "+response);
 
         return response;
     }
@@ -89,9 +93,6 @@ public class Util {
         String hora =cal.get(cal.HOUR_OF_DAY)+"";
         String minutos = cal.get(cal.MINUTE)+"";
         String segundos = cal.get(cal.SECOND)+"";
-        System.out.println(hora + ":" + minutos + ":" + segundos);
-
-        System.out.println("----------> Hora del dia:  "+response);
 
         return response;
     }

@@ -50,8 +50,6 @@ public class ServicioActualizarPago {
         Date dtmFechaPago = Util.convertDate(pago.getFechaPago(),FORMATO_FECHA);
         int hora = Util.getHourOfDay(dtmFechaPago);
 
-        //TODO CAMBIAR EN PRODUCCION
-        //if(hora>=18)
         if(hora>=8)
         {
             String dtmFechaPagoNueva = "";

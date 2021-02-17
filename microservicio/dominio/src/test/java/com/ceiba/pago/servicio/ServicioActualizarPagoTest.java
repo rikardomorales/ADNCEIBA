@@ -32,7 +32,6 @@ public class ServicioActualizarPagoTest {
 
         Pago pagoRespueta = servicioActualizarPago.validarFechaPago(pago);
 
-        System.out.println("VALOR_INCREMENTO_ESPERADO:"+VALOR_INCREMENTO_ESPERADO + " - getValorAdeudado: "+pagoRespueta.getValorAdeudado());
         // act - assert
         assertEquals(VALOR_INCREMENTO_ESPERADO,pagoRespueta.getValorAdeudado());
     }
