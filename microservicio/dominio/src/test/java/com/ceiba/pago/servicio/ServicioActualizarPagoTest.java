@@ -1,17 +1,11 @@
 package com.ceiba.pago.servicio;
 
-import com.ceiba.BasePrueba;
-import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.pago.modelo.entidad.Pago;
 import com.ceiba.pago.puerto.repositorio.RepositorioPago;
 import com.ceiba.pago.servicio.testdatabuilder.PagoTestDataBuilder;
 import com.ceiba.util.Util;
-import org.junit.Before;
 import org.junit.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 
 import java.util.Date;
 
