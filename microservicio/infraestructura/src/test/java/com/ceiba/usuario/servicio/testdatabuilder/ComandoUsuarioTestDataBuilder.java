@@ -10,12 +10,12 @@ public class ComandoUsuarioTestDataBuilder {
     private Long id;
     private String nombre;
     private String clave;
-    private LocalDateTime fecha;
+    private String fecha;
 
     public ComandoUsuarioTestDataBuilder() {
         nombre = UUID.randomUUID().toString();
         clave = "1234";
-        fecha = LocalDateTime.now();
+        fecha = "2021-02-17";
     }
 
     public ComandoUsuarioTestDataBuilder conNombre(String nombre) {
