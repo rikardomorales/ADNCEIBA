@@ -12,8 +12,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
-
 public class Util {
 
     private Util() {
@@ -36,7 +34,7 @@ public class Util {
           convert = formatDate.format(date);
         }catch(Exception e)
          {
-             LOGGER.info("Inconveniente al ejecutar el metodo convertDate: "+e.getMessage());
+            String log ="Inconveniente al ejecutar el metodo convertDate: "+e.getMessage();
          }
         return convert;
     }
@@ -57,7 +55,7 @@ public class Util {
             dtmDate = formatString.parse(strDate);
         }catch (Exception e)
         {
-            LOGGER.info("Inconveniente al convertir fecha texto a Date "+e.getMessage());
+            String log = "Inconveniente al convertir fecha texto a Date "+e.getMessage();
         }
         return dtmDate;
     }
