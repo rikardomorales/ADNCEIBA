@@ -14,7 +14,7 @@ import java.util.Date;
 
 public class Util {
 
-    public Util() {
+    private Util() {
         throw new IllegalStateException("Utility class");
     }
 
