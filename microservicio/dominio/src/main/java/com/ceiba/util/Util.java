@@ -66,7 +66,7 @@ public class Util {
      * @return firstDayOfMonth
      * @throws Exception
      */
-    public static int getDayOfMonth(Date date) throws Exception
+    public static int getDayOfMonth(Date date)
     {
         int response = 0;
         Calendar cal = Calendar.getInstance();
@@ -82,7 +82,7 @@ public class Util {
      * @return firstDayOfMonth
      * @throws Exception
      */
-    public static int getHourOfDay(Date date) throws Exception
+    public static int getHourOfDay(Date date)
     {
         int response = 0;
         Calendar cal = Calendar.getInstance();
@@ -122,7 +122,7 @@ public class Util {
      * @return firstDayOfMonth
      * @throws Exception
      */
-    public static Date getDateAdd(Date date,int value) throws Exception
+    public static Date getDateAdd(Date date,int value)
     {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);

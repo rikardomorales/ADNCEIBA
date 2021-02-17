@@ -32,7 +32,7 @@ public class ServicioActualizarPago {
         }
     }
 
-    public Pago validarFechaPago(Pago pago) throws Exception {
+    public Pago validarFechaPago(Pago pago){
         Date dtmFechaPago = Util.convertDate(pago.getFechaPago(),FORMATO_FECHA);
         int dia = Util.getDayOfMonth(dtmFechaPago);
 
@@ -45,7 +45,7 @@ public class ServicioActualizarPago {
         return pago;
     }
 
-    public Pago validarHoraPago(Pago pago) throws Exception {
+    public Pago validarHoraPago(Pago pago) {
         Date dtmFechaPago = Util.convertDate(pago.getFechaPago(),FORMATO_FECHA);
         int hora = Util.getHourOfDay(dtmFechaPago);
 
