@@ -2,12 +2,9 @@ package com.ceiba.pago.adaptador.dao;
 
 import com.ceiba.infraestructura.jdbc.MapperResult;
 import com.ceiba.pago.modelo.dto.DtoPago;
-import com.ceiba.usuario.modelo.dto.DtoUsuario;
 import org.springframework.jdbc.core.RowMapper;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 
 public class MapeoPago implements RowMapper<DtoPago>, MapperResult {
 

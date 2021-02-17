@@ -5,16 +5,16 @@ import com.ceiba.pago.modelo.entidad.Pago;
 public interface RepositorioPago {
     /**
      * Permite crear un Pago
-     * @param Pago
+     * @param pago
      * @return el id generado
      */
-    Long crear(Pago Pago);
+    Long crear(Pago pago);
 
     /**
      * Permite actualizar un Pago
-     * @param Pago
+     * @param pago
      */
-    void actualizar(Pago Pago);
+    void actualizar(Pago pago);
 
     /**
      * Permite eliminar un Pago
