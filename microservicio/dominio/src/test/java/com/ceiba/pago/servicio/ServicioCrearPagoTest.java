@@ -9,20 +9,28 @@ import com.ceiba.pago.servicio.testdatabuilder.PagoTestDataBuilder;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import static org.junit.Assert.assertEquals;
+
 
 public class ServicioCrearPagoTest {
     private static final String VALOR_INCREMENTO_ESPERADO = "1100000";
     private static final String VALOR_FECHA_ESPERADO = "2021-02-18";
     private static final String FORMATO_FECHA =  "yyyy-MM-dd";
+    private static final Long ID_PAGO =  99999L;
 
     @Test
-    public void validarPagoExistenciaPreviaTest() {
+    public void crearPagoTest() {
         // arrange
-        Pago pago = new PagoTestDataBuilder().build();
+        PagoTestDataBuilder PagoTestDataBuilder = new PagoTestDataBuilder().conIdPago(ID_PAGO);
+
         RepositorioPago repositorioPago = Mockito.mock(RepositorioPago.class);
-        Mockito.when(repositorioPago.existe(Mockito.anyString())).thenReturn(true);
-        ServicioCrearPago servicioCrearPago = new ServicioCrearPago(repositorioPago);
-        // act - assert
-        BasePrueba.assertThrows(() -> servicioCrearPago.ejecutar(pago), ExcepcionDuplicidad.class,"El Pago ya existe en el sistema");
+        ServicioActualizarPago servicioActualizarPago = new ServicioActualizarPago(repositorioPago);
+
+        //act
+        Pago pago = new PagoTestDataBuilder().build();
+        Mockito.when(repositorioPago.crear(pago)).thenReturn(ID_PAGO);
+
+        //assert
+        assertEquals(pago.getIdPago(), ID_PAGO);
     }
 }
