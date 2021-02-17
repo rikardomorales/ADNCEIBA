@@ -7,6 +7,7 @@ import com.ceiba.util.Util;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import java.text.ParseException;
 import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
@@ -20,7 +21,7 @@ public class ServicioActualizarPagoTest {
 
 
     @Test
-    public void validarFechaPagoTest() throws Exception {
+    public void validarFechaPagoTest() throws Exception,ParseException {
         // arrange
         PagoTestDataBuilder PagoTestDataBuilder =
                 new PagoTestDataBuilder().conFechaVencimientoPago("2021-03-30").conFechaPago("2021-02-17").conValorAdeudado("1000000");

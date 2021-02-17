@@ -8,7 +8,6 @@
 package com.ceiba.util;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -30,8 +29,13 @@ public class Util {
     {
         DateFormat formatDate = new SimpleDateFormat(format);
         String convert = "";
-        convert = formatDate.format(date);
-
+        try
+        {
+            convert = formatDate.format(date);
+        }catch(Exception e)
+        {
+            System.out.println("Inconveniente al ejecutar el metodo convertDate: "+e.getMessage());
+        }
         return convert;
     }
 
@@ -43,11 +47,16 @@ public class Util {
      * @param format
      * @return dtmFecha
      */
-    public static Date convertDate(String strDate, String format) throws ParseException {
+    public static Date convertDate(String strDate, String format) {
         SimpleDateFormat formatString = new SimpleDateFormat(format);
         Date dtmDate = new Date();
-        dtmDate = formatString.parse(strDate);
-
+        try
+        {
+            dtmDate = formatString.parse(strDate);
+        }catch (Exception e)
+        {
+            System.out.println("Inconveniente al convertir fecha texto a Date "+e.getMessage());
+        }
         return dtmDate;
     }
 
@@ -92,12 +101,12 @@ public class Util {
      * @param fecha2
      * @return
      */
-    public static boolean esIgualFecha(Date fecha1,Date fecha2) 
+    public static boolean esIgualFecha(Date fecha1,Date fecha2)
     {
         boolean esIgual = false;
         String strFecha1 = "";
         String strFecha2 = "";
-                              
+
         strFecha1 = Util.convertDate(fecha1,"yyyy-MM-dd");
         strFecha2 =  Util.convertDate(fecha2,"yyyy-MM-dd");
         if(strFecha1.equalsIgnoreCase(strFecha2))
