@@ -62,8 +62,7 @@ repositories {
 }
 
 dependencies {
-
-	configurations {
+ 	configurations {
     	runtime.exclude module: 'spring-boot-starter-tomcat'
     	compile.exclude module: 'spring-boot-starter-tomcat'
 	}
