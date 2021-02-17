@@ -32,8 +32,7 @@ public class ServicioActualizarPago {
         }
     }
 
-    public Pago validarFechaPago(Pago pago) throws Exception
-    {
+    public Pago validarFechaPago(Pago pago) throws Exception {
         Date dtmFechaPago = Util.convertDate(pago.getFechaPago(),FORMATO_FECHA);
         int dia = Util.getDayOfMonth(dtmFechaPago);
 

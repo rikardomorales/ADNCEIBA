@@ -8,13 +8,14 @@
 package com.ceiba.util;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
 public class Util {
 
-    private Util() {
+    public Util() {
         throw new IllegalStateException("Utility class");
     }
 
@@ -29,13 +30,8 @@ public class Util {
     {
         DateFormat formatDate = new SimpleDateFormat(format);
         String convert = "";
-        try
-        {
-          convert = formatDate.format(date);
-        }catch(Exception e)
-         {
-            String log ="Inconveniente al ejecutar el metodo convertDate: "+e.getMessage();
-         }
+        convert = formatDate.format(date);
+
         return convert;
     }
 
@@ -47,16 +43,11 @@ public class Util {
      * @param format
      * @return dtmFecha
      */
-    public static Date convertDate(String strDate, String format) {
+    public static Date convertDate(String strDate, String format) throws ParseException {
         SimpleDateFormat formatString = new SimpleDateFormat(format);
         Date dtmDate = new Date();
-        try
-        {
-            dtmDate = formatString.parse(strDate);
-        }catch (Exception e)
-        {
-            String log = "Inconveniente al convertir fecha texto a Date "+e.getMessage();
-        }
+        dtmDate = formatString.parse(strDate);
+
         return dtmDate;
     }
 
