@@ -5,7 +5,6 @@ import com.ceiba.pago.comando.ComandoPago;
 import com.ceiba.pago.comando.manejador.ManejadorActualizarPago;
 import com.ceiba.pago.comando.manejador.ManejadorCrearPago;
 import com.ceiba.pago.comando.manejador.ManejadorEliminarPago;
-import com.ceiba.pago.excepciones.ComandoControladorPagoException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +49,7 @@ public class ComandoControladorPago {
 			manejadorActualizarPago.ejecutar(comandoPago);
 		}catch(Exception e)
 	  	 {
-			 throw new ComandoControladorPagoException(e.getMessage());
+			 System.out.println("---> "+e.getMessage());
 		 }
 	}
 }
