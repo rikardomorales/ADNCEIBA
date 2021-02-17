@@ -3,33 +3,40 @@ package com.ceiba.pago.adaptador.repositorio;
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
 import com.ceiba.pago.modelo.entidad.Pago;
-import com.ceiba.pago.puerto.repositorio.RepositorioPago;
-import com.ceiba.usuario.modelo.entidad.Usuario;
-import com.ceiba.usuario.puerto.repositorio.RepositorioUsuario;
+import com.ceiba.pago.puerto.repositorio.RepositorioPago; 
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class RepositorioPagoMysql implements RepositorioPago {
+    private static final String NAMESPACE = "pago";
+    private static final String CREAR = "crear";
+    private static final String ACTUALIZAR = "actualizar";
+    private static final String ELIMINAR = "eliminar";
+    private static final String EXISTE = "existe";
+    private static final String EXISTE_EXCLUYE_ID = "existeExcluyendoId";
+    private static final String EXISTE_INCLUYE_ID = "existeIncluyendoId";
+    private static final String CAMPO_ID_PAGO = "idPago";
+    private static final String CAMPO_CODIGO_FACTURA = "codigoFactura";
 
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
 
-    @SqlStatement(namespace= "pago", value="crear")
+    @SqlStatement(namespace= NAMESPACE, value=CREAR)
     private static String sqlCrear;
 
-    @SqlStatement(namespace= "pago", value="actualizar")
+    @SqlStatement(namespace= NAMESPACE, value=ACTUALIZAR)
     private static String sqlActualizar;
 
-    @SqlStatement(namespace= "pago", value="eliminar")
+    @SqlStatement(namespace= NAMESPACE, value=ELIMINAR)
     private static String sqlEliminar;
 
-    @SqlStatement(namespace= "pago", value="existe")
+    @SqlStatement(namespace= NAMESPACE, value=EXISTE)
     private static String sqlExiste;
 
-    @SqlStatement(namespace= "pago", value="existeExcluyendoId")
+    @SqlStatement(namespace= NAMESPACE, value=EXISTE_EXCLUYE_ID)
     private static String sqlExisteExcluyendoId;
 
-    @SqlStatement(namespace= "pago", value="existeIncluyendoId")
+    @SqlStatement(namespace= NAMESPACE, value=EXISTE_INCLUYE_ID)
     private static String sqlExisteIncluyendoId;
 
     public RepositorioPagoMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
@@ -44,7 +51,7 @@ public class RepositorioPagoMysql implements RepositorioPago {
     @Override
     public void eliminar(Long id) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue("idPago", id);
+        paramSource.addValue(CAMPO_ID_PAGO, id);
 
         this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminar, paramSource);
     }
@@ -52,7 +59,7 @@ public class RepositorioPagoMysql implements RepositorioPago {
     @Override
     public boolean existe(String codigoFactura) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue("codigoFactura", codigoFactura);
+        paramSource.addValue(CAMPO_CODIGO_FACTURA, codigoFactura);
 
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExiste,paramSource, Boolean.class);
     }
@@ -65,8 +72,8 @@ public class RepositorioPagoMysql implements RepositorioPago {
     @Override
     public boolean existeExcluyendoId(Long id, String codigoFactura) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue("idPago", id);
-        paramSource.addValue("codigoFactura", codigoFactura);
+        paramSource.addValue(CAMPO_ID_PAGO, id);
+        paramSource.addValue(CAMPO_CODIGO_FACTURA, codigoFactura);
 
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExisteExcluyendoId,paramSource, Boolean.class);
     }
@@ -74,8 +81,8 @@ public class RepositorioPagoMysql implements RepositorioPago {
     @Override
     public boolean existeincluyendoId(Long id, String codigoFactura) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue("idPago", id);
-        paramSource.addValue("codigoFactura", codigoFactura);
+        paramSource.addValue(CAMPO_ID_PAGO, id);
+        paramSource.addValue(CAMPO_CODIGO_FACTURA, codigoFactura);
 
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExisteIncluyendoId,paramSource, Boolean.class);
     }
