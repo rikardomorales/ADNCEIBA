@@ -1,13 +1,7 @@
 package com.ceiba.pago.modelo.entidad;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.time.LocalDateTime;
-
-import static com.ceiba.dominio.ValidadorArgumento.validarLongitud;
 import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
 
 @Getter

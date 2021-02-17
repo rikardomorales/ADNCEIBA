@@ -57,37 +57,6 @@ public class Util {
     }
 
     /**
-     * determina si una cadena es o no numerico
-     * @param string
-     * @return
-     */
-    public static boolean isNumeric(String string) {
-        try
-        {
-            Double.parseDouble(string);
-            return true;
-        } catch (NumberFormatException nfe) {
-            return false;
-        }
-    }
-
-    /**
-     * determina si un numero es par
-     * @param strDay
-     * @return
-     */
-    public static boolean isPair(String strDay)
-    {
-       boolean response = false;
-       int day = Integer.parseInt(strDay);
-       if(day%2==0)
-       {
-         response = true;
-       }
-       return response;
-    }
-
-    /**
      * retorna el primer dia de un mes
      * @param date
      * @return firstDayOfMonth
@@ -127,36 +96,6 @@ public class Util {
         return response;
     }
 
-    /**
-     * retorna el primer dia de un mes
-     * @param date
-     * @return firstDayOfMonth
-     * @throws Exception
-     */
-    public static Date getFirstDayOfMonth(Date date) throws Exception
-    {
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        cal.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.getActualMinimum(Calendar.DAY_OF_MONTH));
-
-        return cal.getTime();
-    }
-
-    /**
-     * retorna el ultimo dia del mes
-     * @param date
-     * @return lastDayOfMonth
-     * @throws Exception
-     */
-    public static Date getLastDayOfMonth(Date date) throws Exception
-    {
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        cal.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.getActualMaximum(Calendar.DAY_OF_MONTH));
-        return cal.getTime();
-    }
-    
-    
     /**
      * retorna verdadero si las fechas son iguales
      * @param fecha1

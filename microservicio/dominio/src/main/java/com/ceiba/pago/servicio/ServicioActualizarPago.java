@@ -1,12 +1,9 @@
 package com.ceiba.pago.servicio;
 
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
-import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
 import com.ceiba.pago.modelo.entidad.Pago;
 import com.ceiba.pago.puerto.repositorio.RepositorioPago;
 import com.ceiba.util.Util;
-import lombok.Getter;
-
 import java.util.Date;
 
 public class ServicioActualizarPago {
