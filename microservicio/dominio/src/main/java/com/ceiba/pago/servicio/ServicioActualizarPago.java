@@ -1,6 +1,7 @@
 package com.ceiba.pago.servicio;
 
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
+import com.ceiba.dominio.excepcion.ExcepcionNoExiste;
 import com.ceiba.pago.modelo.entidad.Pago;
 import com.ceiba.pago.puerto.repositorio.RepositorioPago;
 import com.ceiba.util.Util;
@@ -28,7 +29,7 @@ public class ServicioActualizarPago {
 
         if(!existe)
         {
-            throw new ExcepcionDuplicidad(EL_PAGO_NO_EXISTE_EN_EL_SISTEMA);
+            throw new ExcepcionNoExiste(EL_PAGO_NO_EXISTE_EN_EL_SISTEMA);
         }
     }
 

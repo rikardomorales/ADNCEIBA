@@ -43,5 +43,4 @@ public interface RepositorioPago {
      */
     boolean existeincluyendoId(Long id,String codigoFactura);
 
-
 }

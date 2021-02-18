@@ -16,6 +16,7 @@ public class RepositorioPagoMysql implements RepositorioPago {
     private static final String EXISTE = "existe";
     private static final String EXISTE_EXCLUYE_ID = "existeExcluyendoId";
     private static final String EXISTE_INCLUYE_ID = "existeIncluyendoId";
+    private static final String EXISTE_ID = "existeId";
     private static final String CAMPO_ID_PAGO = "idPago";
     private static final String CAMPO_CODIGO_FACTURA = "codigoFactura";
 
@@ -38,6 +39,9 @@ public class RepositorioPagoMysql implements RepositorioPago {
 
     @SqlStatement(namespace= NAMESPACE, value=EXISTE_INCLUYE_ID)
     private static String sqlExisteIncluyendoId;
+
+    @SqlStatement(namespace= NAMESPACE, value=EXISTE_INCLUYE_ID)
+    private static String sqlExisteId;
 
     public RepositorioPagoMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
