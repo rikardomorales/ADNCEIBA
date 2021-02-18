@@ -45,14 +45,7 @@ public class ComandoControladorPago {
 
 	@PutMapping
 	@ApiOperation("Actualizar Pago")
-	public void actualizar(@RequestBody ComandoPago comandoPago)
-	{
-		try
-		{
-			manejadorActualizarPago.ejecutar(comandoPago);
-		}catch(Exception e)
-	  	 {
-			 LOG.error(e.getMessage());
-		 }
+	public void actualizar(@RequestBody ComandoPago comandoPago) throws Exception {
+	  manejadorActualizarPago.ejecutar(comandoPago);
 	}
 }
