@@ -7,6 +7,8 @@ import com.ceiba.pago.comando.manejador.ManejadorCrearPago;
 import com.ceiba.pago.comando.manejador.ManejadorEliminarPago;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/pagos")
 @Api(tags = { "Controlador comando Pago"})
 public class ComandoControladorPago {
+	private static final Logger LOG = LoggerFactory.getLogger(ComandoControladorPago.class);
 
     private final ManejadorCrearPago manejadorCrearPago;
 	private final ManejadorEliminarPago manejadorEliminarPago;
@@ -49,7 +52,7 @@ public class ComandoControladorPago {
 			manejadorActualizarPago.ejecutar(comandoPago);
 		}catch(Exception e)
 	  	 {
-			 System.err.println("---> "+e.getMessage());
+			 LOG.error("---> "+e.getMessage());
 		 }
 	}
 }

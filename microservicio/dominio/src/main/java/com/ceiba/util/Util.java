@@ -7,12 +7,16 @@
  */
 package com.ceiba.util;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
 public final class Util {
+    private static final Logger LOG = LoggerFactory.getLogger(Util.class);
 
     private Util() {
         throw new IllegalStateException("Utility class");
@@ -34,7 +38,7 @@ public final class Util {
             convert = formatDate.format(date);
         }catch(Exception e)
         {
-            System.out.println("Inconveniente al ejecutar el metodo convertDate: "+e.getMessage());
+            LOG.error("Inconveniente al ejecutar el metodo convertDate: "+e.getMessage());
         }
         return convert;
     }
@@ -55,7 +59,7 @@ public final class Util {
             dtmDate = formatString.parse(strDate);
         }catch (Exception e)
         {
-            System.out.println("Inconveniente al convertir fecha texto a Date "+e.getMessage());
+            LOG.error("Inconveniente al convertir fecha texto a Date "+e.getMessage());
         }
         return dtmDate;
     }

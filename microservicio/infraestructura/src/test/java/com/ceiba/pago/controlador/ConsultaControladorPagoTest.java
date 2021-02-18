@@ -32,8 +32,6 @@ public class ConsultaControladorPagoTest {
         String response = mocMvc.perform(get("/pagos")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
-
-        System.out.println("----> Response: "+response);
     }
 
 
