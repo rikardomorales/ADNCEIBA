@@ -21,7 +21,7 @@ public class ServicioCrearPagoTest {
         ServicioCrearPago servicioCrearPago = new ServicioCrearPago(repositorioPago);
 
         //act
-        Pago pago = new PagoTestDataBuilder().build();
+        Pago pago = PagoTestDataBuilder.build();
         Mockito.when(repositorioPago.crear(pago)).thenReturn(ID_PAGO);
         servicioCrearPago.ejecutar(pago);
 
