@@ -1,16 +1,14 @@
 package com.ceiba.pago.servicio;
 
+import com.ceiba.core.BasePrueba;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.dominio.excepcion.ExcepcionNoExiste;
-import com.ceiba.dominio.excepcion.ExcepcionValorObligatorio;
 import com.ceiba.pago.modelo.entidad.Pago;
 import com.ceiba.pago.puerto.repositorio.RepositorioPago;
 import com.ceiba.pago.servicio.testdatabuilder.PagoTestDataBuilder;
 import com.ceiba.util.Util;
 import org.junit.Test;
 import org.mockito.Mockito;
-
-import java.text.ParseException;
 import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
@@ -21,6 +19,7 @@ public class ServicioActualizarPagoTest {
     private static final String VALOR_FECHA_ESPERADO = "2021-02-18";
     private static final String FORMATO_FECHA =  "yyyy-MM-dd";
     private static final Long ID_PAGO =  99999L;
+    private static final String EL_PAGO_NO_EXISTE_EN_EL_SISTEMA = "El pago no se puede actualizar porque, no existe en el sistema";
 
 
     @Test
@@ -76,18 +75,35 @@ public class ServicioActualizarPagoTest {
         assertEquals(pago.getIdPago(), ID_PAGO);
     }
 
-
+    @Test
     public void actualizarPagoTest(){
         // arrange
         PagoTestDataBuilder pagoTestDataBuilder = new PagoTestDataBuilder();
         RepositorioPago repositorioPago = Mockito.mock(RepositorioPago.class);
         Pago pago = pagoTestDataBuilder.build();
+        ServicioActualizarPago servicioActualizarPago = new ServicioActualizarPago(repositorioPago);
+
 
         //act
-        Mockito.when(repositorioPago.existeExcluyendoId(Mockito.anyLong(),Mockito.anyString())).thenReturn(Boolean.FALSE);
+        Mockito.when(repositorioPago.existeincluyendoId(Mockito.anyLong(),Mockito.anyString())).thenReturn(Boolean.TRUE);
+        servicioActualizarPago.ejecutar(pago);
 
         //assert
         Mockito.verify(repositorioPago).actualizar(pago);
+    }
+
+    @Test
+    public void validarPagoExistenciaPreviaTest(){
+        // arrange
+        Pago pago = new PagoTestDataBuilder().conIdPago(1L).build();
+        RepositorioPago repositorioPago = Mockito.mock(RepositorioPago.class);
+
+        //act
+        Mockito.when(repositorioPago.existeExcluyendoId(Mockito.anyLong(),Mockito.anyString())).thenReturn(Boolean.TRUE);
+        ServicioActualizarPago servicioActualizarPago = new ServicioActualizarPago(repositorioPago);
+
+        // act - assert
+        BasePrueba.assertThrows(() -> servicioActualizarPago.ejecutar(pago), ExcepcionNoExiste.class, servicioActualizarPago.EL_PAGO_NO_EXISTE_EN_EL_SISTEMA );
     }
 
 }

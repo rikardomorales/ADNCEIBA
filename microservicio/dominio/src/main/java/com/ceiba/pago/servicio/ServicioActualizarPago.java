@@ -8,7 +8,7 @@ import java.util.Date;
 
 public class ServicioActualizarPago {
 
-    private static final String EL_PAGO_NO_EXISTE_EN_EL_SISTEMA = "El pago no se puede actualizar porque, no existe en el sistema";
+    public static final String EL_PAGO_NO_EXISTE_EN_EL_SISTEMA = "El pago no se puede actualizar porque, no existe en el sistema";
     private static final String FORMATO_FECHA =  "yyyy-MM-dd";
     private final RepositorioPago repositorioPago;
 
