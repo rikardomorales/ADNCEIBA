@@ -44,7 +44,7 @@ public class ServicioCrearPagoTest {
         ServicioCrearPago servicioCrearPago = new ServicioCrearPago(repositorioPago);
 
         // act - assert
-        BasePrueba.assertThrows(() -> servicioCrearPago.ejecutar(pago), ExcepcionValorObligatorio.class, servicioCrearPago.EL_PAGO_YA_EXISTE_EN_EL_SISTEMA);
+        BasePrueba.assertThrows(() -> servicioCrearPago.ejecutar(pago), ExcepcionDuplicidad.class, servicioCrearPago.EL_PAGO_YA_EXISTE_EN_EL_SISTEMA);
     }
 
 }
