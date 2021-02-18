@@ -16,12 +16,13 @@ import static org.junit.Assert.assertTrue;
 
 public class ServicioActualizarPagoTest {
     private static final String VALOR_INCREMENTO_ESPERADO = "1100000.0";
+    private static final String VALOR_SIN_INCREMENTO = "1000000.0";
     private static final String VALOR_FECHA_ESPERADO = "2021-02-18";
     private static final String FORMATO_FECHA =  "yyyy-MM-dd";
     private static final Long ID_PAGO =  99999L;
 
     @Test
-    public void validarFechaPagoTest()  {
+    public void validarFechaPagoDiaMayorRangoTest()  {
         // arrange
         PagoTestDataBuilder pagoTestDataBuilder =
                 new PagoTestDataBuilder().conFechaVencimientoPago("2021-03-30").conFechaPago("2021-02-17").conValorAdeudado("1000000");
@@ -35,6 +36,23 @@ public class ServicioActualizarPagoTest {
 
         // act - assert
         assertEquals(VALOR_INCREMENTO_ESPERADO,pagoRespueta.getValorAdeudado());
+    }
+
+    @Test
+    public void validarFechaPagoDiaRangoTest()  {
+        // arrange
+        PagoTestDataBuilder pagoTestDataBuilder =
+                new PagoTestDataBuilder().conFechaVencimientoPago("2021-03-30").conFechaPago("2021-02-10").conValorAdeudado("1000000.0");
+        Pago pago = pagoTestDataBuilder.build();
+
+        RepositorioPago repositorioPago = Mockito.mock(RepositorioPago.class);
+        Mockito.when(repositorioPago.existe(Mockito.anyString())).thenReturn(true);
+        ServicioActualizarPago servicioActualizarPago = new ServicioActualizarPago(repositorioPago);
+
+        Pago pagoRespueta = servicioActualizarPago.validarFechaPago(pago);
+
+        // act - assert
+        assertEquals(VALOR_SIN_INCREMENTO,pagoRespueta.getValorAdeudado());
     }
 
     @Test
