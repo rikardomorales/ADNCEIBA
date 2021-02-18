@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -51,7 +52,7 @@ public final class Util {
      * @param format
      * @return dtmFecha
      */
-    public static Date convertDate(String strDate, String format) {
+    public static Date convertDate(String strDate, String format) throws ParseException {
         SimpleDateFormat formatString = new SimpleDateFormat(format);
         Date dtmDate = new Date();
         try
@@ -60,6 +61,7 @@ public final class Util {
         }catch (Exception e)
         {
             LOG.error(e.getMessage());
+            throw e;
         }
         return dtmDate;
     }
@@ -68,7 +70,6 @@ public final class Util {
      * retorna el primer dia de un mes
      * @param date
      * @return firstDayOfMonth
-     * @throws Exception
      */
     public static int getDayOfMonth(Date date)
     {
@@ -82,7 +83,6 @@ public final class Util {
 
     /**
      * retorna el primer dia de un mes
-     * @param date
      * @return firstDayOfMonth
      * @throws Exception
      */
