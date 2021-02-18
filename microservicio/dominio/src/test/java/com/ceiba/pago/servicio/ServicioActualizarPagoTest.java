@@ -76,4 +76,18 @@ public class ServicioActualizarPagoTest {
         assertEquals(pago.getIdPago(), ID_PAGO);
     }
 
+
+    public void actualizarPagoTest(){
+        // arrange
+        PagoTestDataBuilder pagoTestDataBuilder = new PagoTestDataBuilder();
+        RepositorioPago repositorioPago = Mockito.mock(RepositorioPago.class);
+        Pago pago = pagoTestDataBuilder.build();
+
+        //act
+        Mockito.when(repositorioPago.existeExcluyendoId(Mockito.anyLong(),Mockito.anyString())).thenReturn(Boolean.FALSE);
+
+        //assert
+        Mockito.verify(repositorioPago).actualizar(pago);
+    }
+
 }

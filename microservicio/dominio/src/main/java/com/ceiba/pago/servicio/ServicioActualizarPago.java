@@ -24,7 +24,7 @@ public class ServicioActualizarPago {
         this.repositorioPago.actualizar(pago);
     }
 
-    private void validarExistenciaPrevia(Pago pago) {
+    public void validarExistenciaPrevia(Pago pago) {
         boolean existe = this.repositorioPago.existeincluyendoId(pago.getIdPago(),pago.getCodigoFactura());
 
         if(!existe)
