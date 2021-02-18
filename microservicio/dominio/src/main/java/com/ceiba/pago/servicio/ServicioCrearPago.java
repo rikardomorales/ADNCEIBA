@@ -7,7 +7,7 @@ import com.ceiba.pago.puerto.repositorio.RepositorioPago;
 
 public class ServicioCrearPago {
 
-    private static final String EL_PAGO_YA_EXISTE_EN_EL_SISTEMA = "El pago ya existe en el sistema";
+    public static final String EL_PAGO_YA_EXISTE_EN_EL_SISTEMA = "El pago ya existe en el sistema";
 
     private final RepositorioPago repositorioPago;
 

@@ -1,5 +1,8 @@
 package com.ceiba.pago.servicio;
 
+import com.ceiba.core.BasePrueba;
+import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
+import com.ceiba.dominio.excepcion.ExcepcionNoExiste;
 import com.ceiba.pago.modelo.entidad.Pago;
 import com.ceiba.pago.puerto.repositorio.RepositorioPago;
 import com.ceiba.pago.servicio.testdatabuilder.PagoTestDataBuilder;
@@ -27,5 +30,19 @@ public class ServicioCrearPagoTest {
 
         //assert
         assertEquals(pago.getIdPago(), ID_PAGO);
+    }
+
+    @Test
+    public void validarPagoExistenciaPreviaTest() {
+        // arrange
+        Pago pago = new PagoTestDataBuilder().conIdPago(1L).build();
+        RepositorioPago repositorioPago = Mockito.mock(RepositorioPago.class);
+
+        //act
+        Mockito.when(repositorioPago.existe(pago.getCodigoFactura())).thenReturn(Boolean.TRUE);
+        ServicioCrearPago servicioCrearPago = new ServicioCrearPago(repositorioPago);
+
+        // act - assert
+        BasePrueba.assertThrows(() -> servicioCrearPago.ejecutar(pago), ExcepcionDuplicidad.class, servicioCrearPago.EL_PAGO_YA_EXISTE_EN_EL_SISTEMA);
     }
 }
