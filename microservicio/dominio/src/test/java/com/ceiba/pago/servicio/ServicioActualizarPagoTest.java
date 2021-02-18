@@ -9,8 +9,6 @@ import com.ceiba.pago.servicio.testdatabuilder.PagoTestDataBuilder;
 import com.ceiba.util.Util;
 import org.junit.Test;
 import org.mockito.Mockito;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.text.ParseException;
 import java.util.Date;
@@ -19,8 +17,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class ServicioActualizarPagoTest {
-    private static final Logger LOG = LoggerFactory.getLogger(ServicioActualizarPagoTest.class);
-
     private static final String VALOR_INCREMENTO_ESPERADO = "1100000.0";
     private static final String VALOR_FECHA_ESPERADO = "2021-02-18";
     private static final String FORMATO_FECHA =  "yyyy-MM-dd";
@@ -45,8 +41,7 @@ public class ServicioActualizarPagoTest {
     }
 
     @Test
-    public void validarHoraPagoTest()
-    {
+    public void validarHoraPagoTest() throws Exception {
         // arrange
         PagoTestDataBuilder PagoTestDataBuilder =
                 new PagoTestDataBuilder().conFechaVencimientoPago("2021-03-30").conFechaPago("2021-02-17").conValorAdeudado("1000000");
@@ -57,17 +52,11 @@ public class ServicioActualizarPagoTest {
         ServicioActualizarPago servicioActualizarPago = new ServicioActualizarPago(repositorioPago);
 
         Pago pagoRespueta = servicioActualizarPago.validarHoraPago(pago);
-        try
-        {
-          Date dtmFechaPago = Util.convertDate(pagoRespueta.getFechaPago(),FORMATO_FECHA);
-          Date dtmFechaEsperada = Util.convertDate(VALOR_FECHA_ESPERADO,FORMATO_FECHA);
+        Date dtmFechaPago = Util.convertDate(pagoRespueta.getFechaPago(),FORMATO_FECHA);
+        Date dtmFechaEsperada = Util.convertDate(VALOR_FECHA_ESPERADO,FORMATO_FECHA);
 
-           // act - assert
-           assertTrue(Util.esIgualFecha(dtmFechaPago,dtmFechaEsperada));
-         }catch (Exception e)
-          {
-            LOG.error(e.getMessage());
-          }
+        // act - assert
+        assertTrue(Util.esIgualFecha(dtmFechaPago,dtmFechaEsperada));
     }
 
 
