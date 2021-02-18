@@ -11,8 +11,9 @@ import org.junit.Test;
 import org.mockito.Mockito;
 import java.util.Date;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.when;
 
 public class ServicioActualizarPagoTest {
     private static final String VALOR_INCREMENTO_ESPERADO = "1100000.0";
@@ -29,7 +30,7 @@ public class ServicioActualizarPagoTest {
         Pago pago = pagoTestDataBuilder.build();
 
         RepositorioPago repositorioPago = Mockito.mock(RepositorioPago.class);
-        Mockito.when(repositorioPago.existe(Mockito.anyString())).thenReturn(true);
+        when(repositorioPago.existe(Mockito.anyString())).thenReturn(true);
         ServicioActualizarPago servicioActualizarPago = new ServicioActualizarPago(repositorioPago);
 
         Pago pagoRespueta = servicioActualizarPago.validarFechaPago(pago);
@@ -46,7 +47,7 @@ public class ServicioActualizarPagoTest {
         Pago pago = pagoTestDataBuilder.build();
 
         RepositorioPago repositorioPago = Mockito.mock(RepositorioPago.class);
-        Mockito.when(repositorioPago.existe(Mockito.anyString())).thenReturn(true);
+        when(repositorioPago.existe(Mockito.anyString())).thenReturn(true);
         ServicioActualizarPago servicioActualizarPago = new ServicioActualizarPago(repositorioPago);
 
         Pago pagoRespueta = servicioActualizarPago.validarFechaPago(pago);
@@ -56,22 +57,47 @@ public class ServicioActualizarPagoTest {
     }
 
     @Test
-    public void validarHoraPagoTest() throws Exception {
+    public void validarHoraPagoCorrectaTest() throws Exception {
         // arrange
-        PagoTestDataBuilder PagoTestDataBuilder =
+        PagoTestDataBuilder pagoTestDataBuilder =
                 new PagoTestDataBuilder().conFechaVencimientoPago("2021-03-30").conFechaPago("2021-02-17").conValorAdeudado("1000000");
-        Pago pago = new PagoTestDataBuilder().build();
+        Pago pago = pagoTestDataBuilder.build();
+
+
+        //act
+        Pago pagoRespueta = pagoTestDataBuilder.conFechaPago("2021-02-18").build();
 
         RepositorioPago repositorioPago = Mockito.mock(RepositorioPago.class);
-        Mockito.when(repositorioPago.existe(Mockito.anyString())).thenReturn(true);
-        ServicioActualizarPago servicioActualizarPago = new ServicioActualizarPago(repositorioPago);
+        ServicioActualizarPago servicioActualizarPago = Mockito.mock(ServicioActualizarPago.class);
+        Mockito.when(servicioActualizarPago.validarHoraPago(pago)).thenReturn(pagoRespueta);
 
-        Pago pagoRespueta = servicioActualizarPago.validarHoraPago(pago);
         Date dtmFechaPago = Util.convertDate(pagoRespueta.getFechaPago(),FORMATO_FECHA);
         Date dtmFechaEsperada = Util.convertDate(VALOR_FECHA_ESPERADO,FORMATO_FECHA);
 
-        // act - assert
+        // assert
         assertTrue(Util.esIgualFecha(dtmFechaPago,dtmFechaEsperada));
+    }
+
+    @Test
+    public void validarHoraPagoIncorrectaTest() throws Exception {
+        // arrange
+        PagoTestDataBuilder pagoTestDataBuilder =
+                new PagoTestDataBuilder().conFechaVencimientoPago("2021-03-30").conFechaPago("2021-02-17").conValorAdeudado("1000000");
+        Pago pago = pagoTestDataBuilder.build();
+
+
+        //act
+        Pago pagoRespueta = pagoTestDataBuilder.conFechaPago("2021-02-17").build();
+
+        RepositorioPago repositorioPago = Mockito.mock(RepositorioPago.class);
+        ServicioActualizarPago servicioActualizarPago = Mockito.mock(ServicioActualizarPago.class);
+        Mockito.when(servicioActualizarPago.validarHoraPago(pago)).thenReturn(pagoRespueta);
+
+        Date dtmFechaPago = Util.convertDate(pagoRespueta.getFechaPago(),FORMATO_FECHA);
+        Date dtmFechaEsperada = Util.convertDate(VALOR_FECHA_ESPERADO,FORMATO_FECHA);
+
+        // assert
+        assertFalse(Util.esIgualFecha(dtmFechaPago,dtmFechaEsperada));
     }
 
 
@@ -101,7 +127,7 @@ public class ServicioActualizarPagoTest {
 
 
         //act
-        Mockito.when(repositorioPago.existeincluyendoId(Mockito.anyLong(),Mockito.anyString())).thenReturn(Boolean.TRUE);
+        when(repositorioPago.existeincluyendoId(Mockito.anyLong(),Mockito.anyString())).thenReturn(Boolean.TRUE);
         servicioActualizarPago.ejecutar(pago);
 
         //assert
@@ -115,7 +141,7 @@ public class ServicioActualizarPagoTest {
         RepositorioPago repositorioPago = Mockito.mock(RepositorioPago.class);
 
         //act
-        Mockito.when(repositorioPago.existeExcluyendoId(Mockito.anyLong(),Mockito.anyString())).thenReturn(Boolean.TRUE);
+        when(repositorioPago.existeExcluyendoId(Mockito.anyLong(),Mockito.anyString())).thenReturn(Boolean.TRUE);
         ServicioActualizarPago servicioActualizarPago = new ServicioActualizarPago(repositorioPago);
 
         // act - assert

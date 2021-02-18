@@ -10,6 +10,8 @@ public class ServicioActualizarPago {
 
     public static final String EL_PAGO_NO_EXISTE_EN_EL_SISTEMA = "El pago no se puede actualizar porque, no existe en el sistema";
     private static final String FORMATO_FECHA =  "yyyy-MM-dd";
+    private static final int HORA_LIMITE =  18;
+    private static final int DIA_LIMITE =  15;
     private final RepositorioPago repositorioPago;
 
     public ServicioActualizarPago(RepositorioPago repositorioPago) {
@@ -37,7 +39,7 @@ public class ServicioActualizarPago {
         Date dtmFechaPago = Util.convertDate(pago.getFechaPago(),FORMATO_FECHA);
         int dia = Util.getDayOfMonth(dtmFechaPago);
 
-        if(dia>15)
+        if(dia>DIA_LIMITE)
         {
             double incremento = Double.parseDouble(pago.getValorAdeudado())+(Double.parseDouble(pago.getValorAdeudado()))*0.1;
             pago.setValorAdeudado(incremento+"");
@@ -50,7 +52,7 @@ public class ServicioActualizarPago {
         Date dtmFechaPago = Util.convertDate(pago.getFechaPago(),FORMATO_FECHA);
         int hora = Util.getHourOfDay();
 
-        if(hora>=8)
+        if(hora>=HORA_LIMITE)
         {
             String dtmFechaPagoNueva = "";
             dtmFechaPagoNueva = Util.convertDate(Util.getDateAdd(dtmFechaPago,1),FORMATO_FECHA);
