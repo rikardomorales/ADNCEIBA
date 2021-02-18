@@ -38,7 +38,7 @@ public final class Util {
             convert = formatDate.format(date);
         }catch(Exception e)
         {
-            LOG.error("Inconveniente al ejecutar el metodo convertDate: "+e.getMessage());
+            LOG.error(e.getMessage());
         }
         return convert;
     }
@@ -59,7 +59,7 @@ public final class Util {
             dtmDate = formatString.parse(strDate);
         }catch (Exception e)
         {
-            LOG.error("Inconveniente al convertir fecha texto a Date "+e.getMessage());
+            LOG.error(e.getMessage());
         }
         return dtmDate;
     }
