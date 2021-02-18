@@ -1,16 +1,10 @@
-package com.ceiba.pago.servicio.entidad;
+package com.ceiba.pago.entidad;
 
-import com.ceiba.core.BasePrueba;
-import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.dominio.excepcion.ExcepcionValorObligatorio;
 import com.ceiba.pago.modelo.entidad.Pago;
-import com.ceiba.pago.puerto.repositorio.RepositorioPago;
-import com.ceiba.pago.servicio.ServicioCrearPago;
 import com.ceiba.pago.servicio.testdatabuilder.PagoTestDataBuilder;
 import org.junit.Test;
-import org.mockito.Mockito;
 
-import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
