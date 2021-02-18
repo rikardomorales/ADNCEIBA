@@ -12,7 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class Util {
+public final class Util {
 
     private Util() {
         throw new IllegalStateException("Utility class");
@@ -87,10 +87,6 @@ public class Util {
         int response = 0;
         Calendar cal = Calendar.getInstance();
         response =  cal.get(Calendar.HOUR_OF_DAY);
-
-        String hora =cal.get(cal.HOUR_OF_DAY)+"";
-        String minutos = cal.get(cal.MINUTE)+"";
-        String segundos = cal.get(cal.SECOND)+"";
 
         return response;
     }

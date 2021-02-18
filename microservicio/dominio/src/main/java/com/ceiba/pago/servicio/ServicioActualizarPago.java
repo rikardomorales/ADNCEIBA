@@ -1,6 +1,5 @@
 package com.ceiba.pago.servicio;
 
-import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.dominio.excepcion.ExcepcionNoExiste;
 import com.ceiba.pago.modelo.entidad.Pago;
 import com.ceiba.pago.puerto.repositorio.RepositorioPago;
@@ -17,7 +16,8 @@ public class ServicioActualizarPago {
         this.repositorioPago = repositorioPago;
     }
 
-    public void ejecutar(Pago pago) throws Exception {
+    public void ejecutar(Pago pago)
+    {
         validarExistenciaPrevia(pago);
         pago  = validarFechaPago(pago);
         pago  = validarHoraPago(pago);

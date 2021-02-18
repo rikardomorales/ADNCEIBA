@@ -16,7 +16,6 @@ public class RepositorioPagoMysql implements RepositorioPago {
     private static final String EXISTE = "existe";
     private static final String EXISTE_EXCLUYE_ID = "existeExcluyendoId";
     private static final String EXISTE_INCLUYE_ID = "existeIncluyendoId";
-    private static final String EXISTE_ID = "existeId";
     private static final String CAMPO_ID_PAGO = "idPago";
     private static final String CAMPO_CODIGO_FACTURA = "codigoFactura";
 

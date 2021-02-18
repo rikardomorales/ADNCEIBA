@@ -24,11 +24,11 @@ public class ServicioActualizarPagoTest {
 
 
     @Test
-    public void validarFechaPagoTest() throws Exception,ParseException {
+    public void validarFechaPagoTest()  {
         // arrange
-        PagoTestDataBuilder PagoTestDataBuilder =
+        PagoTestDataBuilder pagoTestDataBuilder =
                 new PagoTestDataBuilder().conFechaVencimientoPago("2021-03-30").conFechaPago("2021-02-17").conValorAdeudado("1000000");
-        Pago pago = new PagoTestDataBuilder().build();
+        Pago pago = pagoTestDataBuilder.build();
 
         RepositorioPago repositorioPago = Mockito.mock(RepositorioPago.class);
         Mockito.when(repositorioPago.existe(Mockito.anyString())).thenReturn(true);
