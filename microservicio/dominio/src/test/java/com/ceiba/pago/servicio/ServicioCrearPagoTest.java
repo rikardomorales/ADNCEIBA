@@ -3,6 +3,7 @@ package com.ceiba.pago.servicio;
 import com.ceiba.core.BasePrueba;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.dominio.excepcion.ExcepcionNoExiste;
+import com.ceiba.dominio.excepcion.ExcepcionValorObligatorio;
 import com.ceiba.pago.modelo.entidad.Pago;
 import com.ceiba.pago.puerto.repositorio.RepositorioPago;
 import com.ceiba.pago.servicio.testdatabuilder.PagoTestDataBuilder;
@@ -43,6 +44,7 @@ public class ServicioCrearPagoTest {
         ServicioCrearPago servicioCrearPago = new ServicioCrearPago(repositorioPago);
 
         // act - assert
-        BasePrueba.assertThrows(() -> servicioCrearPago.ejecutar(pago), ExcepcionDuplicidad.class, servicioCrearPago.EL_PAGO_YA_EXISTE_EN_EL_SISTEMA);
+        BasePrueba.assertThrows(() -> servicioCrearPago.ejecutar(pago), ExcepcionValorObligatorio.class, servicioCrearPago.EL_PAGO_YA_EXISTE_EN_EL_SISTEMA);
     }
+
 }

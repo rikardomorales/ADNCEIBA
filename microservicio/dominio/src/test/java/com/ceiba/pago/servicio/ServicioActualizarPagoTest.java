@@ -19,8 +19,6 @@ public class ServicioActualizarPagoTest {
     private static final String VALOR_FECHA_ESPERADO = "2021-02-18";
     private static final String FORMATO_FECHA =  "yyyy-MM-dd";
     private static final Long ID_PAGO =  99999L;
-    private static final String EL_PAGO_NO_EXISTE_EN_EL_SISTEMA = "El pago no se puede actualizar porque, no existe en el sistema";
-
 
     @Test
     public void validarFechaPagoTest()  {

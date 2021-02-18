@@ -8,7 +8,7 @@ import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
 @Setter
 public class Pago {
 
-    private static final String SE_DEBE_INGRESAR_DOCUMENTO_IDENTIFICACION = "Se debe ingresar el documento de identificación";
+    public static final String SE_DEBE_INGRESAR_DOCUMENTO_IDENTIFICACION = "Se debe ingresar el documento de identificación";
     private static final String SE_DEBE_INGRESAR_CODIGO_FACTURA = "Se debe ingresar el codigo de la factura";
     private static final String SE_DEBE_INGRESAR_VALOR_ADEUDADO = "Se debe ingresar el codigo de la factura";
     private static final String SE_DEBE_INGRESAR_FECHA_VENCIMIENTO = "Se debe ingresar la fecha de vencimiento de pago";
