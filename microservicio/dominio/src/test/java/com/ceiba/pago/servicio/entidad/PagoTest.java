@@ -18,6 +18,8 @@ public class PagoTest {
 
         //act
         Pago pago = pagoTestDataBuilder.build();
+        pago.setFechaVencimientoPago("");
+        pago.setCodigoFactura("");
 
         //assert
         Pago pagoTest = new Pago(pago.getIdPago(),pago.getDocumentoIdentificacionDeudor(),
