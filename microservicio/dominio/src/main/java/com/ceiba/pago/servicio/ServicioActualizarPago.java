@@ -48,7 +48,7 @@ public class ServicioActualizarPago {
 
     public Pago validarHoraPago(Pago pago) {
         Date dtmFechaPago = Util.convertDate(pago.getFechaPago(),FORMATO_FECHA);
-        int hora = Util.getHourOfDay(dtmFechaPago);
+        int hora = Util.getHourOfDay();
 
         if(hora>=8)
         {

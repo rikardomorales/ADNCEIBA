@@ -86,7 +86,7 @@ public final class Util {
      * @return firstDayOfMonth
      * @throws Exception
      */
-    public static int getHourOfDay(Date date)
+    public static int getHourOfDay()
     {
         int response = 0;
         Calendar cal = Calendar.getInstance();
