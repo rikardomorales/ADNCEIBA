@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/pagos")
 @Api(tags = { "Controlador comando Pago"})
-@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.POST,RequestMethod.DELETE })
 public class ComandoControladorPago {
     private final ManejadorCrearPago manejadorCrearPago;
 	private final ManejadorEliminarPago manejadorEliminarPago;
