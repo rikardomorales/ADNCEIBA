@@ -49,7 +49,7 @@ public class ComandoControladorPago {
 		  manejadorActualizarPago.ejecutar(comandoPago);
 	  }catch (Exception e)
 	   {
-         new ComandoControladorPagoExcepcion(e.getMessage(),e);
+		   throw new ComandoControladorPagoExcepcion(e.getMessage(),e);
 	   }
 	  return true;
 	}
