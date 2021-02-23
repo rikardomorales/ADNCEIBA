@@ -6,13 +6,10 @@ import com.ceiba.dominio.excepcion.ExcepcionNoExiste;
 import com.ceiba.pago.modelo.entidad.Pago;
 import com.ceiba.pago.puerto.repositorio.RepositorioPago;
 import com.ceiba.pago.servicio.testdatabuilder.PagoTestDataBuilder;
-import com.ceiba.util.Util;
 import org.junit.Test;
 import org.mockito.Mockito;
-import java.util.Date;
 
 import static org.junit.Assert.*;
-import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 public class ServicioActualizarPagoTest {
@@ -67,15 +64,11 @@ public class ServicioActualizarPagoTest {
         //act
         Pago pagoRespueta = pagoTestDataBuilder.conFechaPago("2021-02-18").build();
 
-        RepositorioPago repositorioPago = Mockito.mock(RepositorioPago.class);
         ServicioActualizarPago servicioActualizarPago = Mockito.mock(ServicioActualizarPago.class);
         Mockito.when(servicioActualizarPago.validarHoraPago(pago)).thenReturn(pagoRespueta);
 
-        Date dtmFechaPago = Util.convertDate(pagoRespueta.getFechaPago(),FORMATO_FECHA);
-        Date dtmFechaEsperada = Util.convertDate(VALOR_FECHA_ESPERADO,FORMATO_FECHA);
-
         // assert
-        assertTrue(Util.esIgualFecha(dtmFechaPago,dtmFechaEsperada));
+        assertTrue(pagoRespueta.getFechaPago().equalsIgnoreCase(VALOR_FECHA_ESPERADO));
     }
 
     @Test
@@ -93,11 +86,8 @@ public class ServicioActualizarPagoTest {
         ServicioActualizarPago servicioActualizarPago = Mockito.mock(ServicioActualizarPago.class);
         Mockito.when(servicioActualizarPago.validarHoraPago(pago)).thenReturn(pagoRespueta);
 
-        Date dtmFechaPago = Util.convertDate(pagoRespueta.getFechaPago(),FORMATO_FECHA);
-        Date dtmFechaEsperada = Util.convertDate(VALOR_FECHA_ESPERADO,FORMATO_FECHA);
-
         // assert
-        assertFalse(Util.esIgualFecha(dtmFechaPago,dtmFechaEsperada));
+        assertFalse(pagoRespueta.getFechaPago().equalsIgnoreCase(VALOR_FECHA_ESPERADO));
     }
 
 

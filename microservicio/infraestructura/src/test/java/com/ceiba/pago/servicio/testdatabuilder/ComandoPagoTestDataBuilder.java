@@ -19,7 +19,7 @@ public class ComandoPagoTestDataBuilder {
         this.valorAdeudado = 1000000;
         this.valorPagado = 0;
         this.fechaVencimientoPago = "2020-03-30";
-        this.fechaPago = "";
+        this.fechaPago = "2020-03-30";
     }
 
     public ComandoPagoTestDataBuilder conIdPago(Long id) {

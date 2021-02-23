@@ -3,8 +3,10 @@ package com.ceiba.pago.servicio;
 import com.ceiba.dominio.excepcion.ExcepcionNoExiste;
 import com.ceiba.pago.modelo.entidad.Pago;
 import com.ceiba.pago.puerto.repositorio.RepositorioPago;
-import com.ceiba.util.Util;
-import java.util.Date;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class ServicioActualizarPago {
 
@@ -36,8 +38,8 @@ public class ServicioActualizarPago {
     }
 
     public Pago validarFechaPago(Pago pago){
-        Date dtmFechaPago = Util.convertDate(pago.getFechaPago(),FORMATO_FECHA);
-        int dia = Util.getDayOfMonth(dtmFechaPago);
+        LocalDate fechaPago = LocalDate.parse(pago.getFechaPago());
+        int dia = fechaPago.getDayOfMonth();
 
         if(dia>DIA_LIMITE)
         {
@@ -49,14 +51,16 @@ public class ServicioActualizarPago {
     }
 
     public Pago validarHoraPago(Pago pago) {
-        Date dtmFechaPago = Util.convertDate(pago.getFechaPago(),FORMATO_FECHA);
-        int hora = Util.getHourOfDay();
+        LocalTime horaActual = LocalTime.now();
+        int hora = horaActual.getHour();
+        System.out.println("HoraActual: "+hora);
 
         if(hora>=HORA_LIMITE)
         {
-            String dtmFechaPagoNueva = "";
-            dtmFechaPagoNueva = Util.convertDate(Util.getDateAdd(dtmFechaPago,1),FORMATO_FECHA);
-            pago.setFechaPago(dtmFechaPagoNueva);
+            LocalDate fechaPago = LocalDate.parse(pago.getFechaPago());
+            fechaPago = fechaPago.plusDays(1);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(FORMATO_FECHA);
+            pago.setFechaPago(formatter.format(fechaPago));
         }
 
         return pago;
