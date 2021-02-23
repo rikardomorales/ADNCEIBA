@@ -53,7 +53,6 @@ public class ServicioActualizarPago {
     public Pago validarHoraPago(Pago pago) {
         LocalTime horaActual = LocalTime.now();
         int hora = horaActual.getHour();
-        System.out.println("HoraActual: "+hora);
 
         if(hora>=HORA_LIMITE)
         {
