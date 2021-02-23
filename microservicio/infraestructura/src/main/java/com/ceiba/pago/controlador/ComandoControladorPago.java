@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/pagos")
 @Api(tags = { "Controlador comando Pago"})
+@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.POST,RequestMethod.DELETE })
 public class ComandoControladorPago {
     private final ManejadorCrearPago manejadorCrearPago;
 	private final ManejadorEliminarPago manejadorEliminarPago;
@@ -41,7 +42,8 @@ public class ComandoControladorPago {
 
 	@PutMapping
 	@ApiOperation("Actualizar Pago")
-	public void actualizar(@RequestBody ComandoPago comandoPago) throws Exception {
+	public boolean actualizar(@RequestBody ComandoPago comandoPago) throws Exception {
 	  manejadorActualizarPago.ejecutar(comandoPago);
+	  return true;
 	}
 }
