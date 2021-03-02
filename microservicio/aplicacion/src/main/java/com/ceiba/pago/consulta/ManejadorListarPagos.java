@@ -16,4 +16,6 @@ public class ManejadorListarPagos {
     }
 
     public List<DtoPago> ejecutar(){ return this.daoPago.listar(); }
+
+    public List<DtoPago> ejecutar(String identificacion){ return this.daoPago.listarPorCedula(identificacion); }
 }

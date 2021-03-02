@@ -18,8 +18,14 @@ public class ManejadorActualizarPago implements ManejadorComando<ComandoPago> {
         this.servicioActualizarPago = servicioActualizarPago;
     }
 
-    public void ejecutar(ComandoPago comandoPago) throws Exception {
-        Pago pago = this.fabricaPago.crear(comandoPago);
-        this.servicioActualizarPago.ejecutar(pago);
+    public void ejecutar(ComandoPago comandoPago) {
+        try
+        {
+            Pago pago = this.fabricaPago.crear(comandoPago);
+            this.servicioActualizarPago.ejecutar(pago);
+        }catch (Exception e)
+        {
+            throw e;
+        }
     }
 }

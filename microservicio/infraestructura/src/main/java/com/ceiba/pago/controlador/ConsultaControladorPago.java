@@ -11,7 +11,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/pagos")
 @Api(tags={"Controlador consulta pagos"})
-@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.POST,RequestMethod.DELETE })
 public class ConsultaControladorPago {
 
     private final ManejadorListarPagos manejadorListarPagos;
@@ -26,4 +25,9 @@ public class ConsultaControladorPago {
         return this.manejadorListarPagos.ejecutar();
     }
 
+    @GetMapping("/id")
+    @ApiOperation("Listar Pagos identificacion")
+    public List<DtoPago> listarPorCedula(@RequestParam("identificacion") String identificacion) {
+        return this.manejadorListarPagos.ejecutar(identificacion);
+    }
 }

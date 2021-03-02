@@ -18,4 +18,17 @@ public class ComandoPago {
     private double valorPagado;
     private String fechaVencimientoPago;
     private String fechaPago;
+
+    @Override
+    public String toString() {
+        return "ComandoPago{" +
+                "idPago=" + idPago +
+                ", documentoIdentificacionDeudor='" + documentoIdentificacionDeudor + '\'' +
+                ", codigoFactura='" + codigoFactura + '\'' +
+                ", valorAdeudado=" + valorAdeudado +
+                ", valorPagado=" + valorPagado +
+                ", fechaVencimientoPago='" + fechaVencimientoPago + '\'' +
+                ", fechaPago='" + fechaPago + '\'' +
+                '}';
+    }
 }
